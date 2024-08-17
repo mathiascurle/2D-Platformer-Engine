@@ -1,0 +1,8 @@
+numberOfTiles.x numberOfTiles.y, 
+tiledata tiledata tiledata
+tiledata tiledata tiledata
+tiledata tiledata tiledata
+osv...
+
+seperate with single space, 
+always leave semicolon (;) at end of line
