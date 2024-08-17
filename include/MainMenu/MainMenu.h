@@ -1,9 +1,11 @@
 #include "GamestateInterface.h"
 #include "LevelManager.h"
 #include "LevelEditor.h"
+#include "Globals.h"
+using namespace Global;
 
 class MainMenu 
-  : public GamestateInterface
+  
 {
 public:
   MainMenu();

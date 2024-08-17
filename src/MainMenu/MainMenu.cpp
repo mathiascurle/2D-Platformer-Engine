@@ -22,14 +22,22 @@ void MainMenu::draw()
   /*----------------------*/
 
   DrawText("Main Menu", 10, 10, 20, GRAY);
+  float width = Screen::g_iScreenWidth / 10;
+  float height = Screen::g_iScreenHeight / 14;
+  // float x = (Screen::g_iScreenWidth / 2) - (width / 2);
+  float x = 10;
+  float y = 50;
 
-  if (GuiButton(Rectangle {10, 75, 100, 50}, "Level 0"))
+  if (GuiButton(Rectangle {x, y, width, height}, "Level 0"))
     LevelManager::SetLevel(0);
-  if (GuiButton(Rectangle {10, 130, 100, 50}, "Level 1"))
+  y += height + 10;
+  if (GuiButton(Rectangle {x, y, width, height}, "Level 1"))
     LevelManager::SetLevel(1);
-  if (GuiButton(Rectangle {10, 185, 100, 50}, "Level 2"))
+  y += height + 10;
+  if (GuiButton(Rectangle {x, y, width, height}, "Level 2"))
     LevelManager::SetLevel(2);
-  if (GuiButton(Rectangle {10, 240, 100, 50}, "Level 3"))
+  y += height + 10;
+  if (GuiButton(Rectangle {x, y, width, height}, "Level 3"))
     LevelManager::SetLevel(3);
 
   /*----------------------*/
