@@ -1,0 +1,10 @@
+^G:\SPRAKTEK\RAYLIB_PROJECTS\2D-PLATFORMER-ENGINE\BUILD\CMAKEFILES\0C4E856D863351ACA0CEF81695C783CF\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SG:/Spraktek/raylib_projects/2D-Platformer-Engine -BG:/Spraktek/raylib_projects/2D-Platformer-Engine/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file G:/Spraktek/raylib_projects/2D-Platformer-Engine/build/mygame.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

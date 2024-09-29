@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="G:\Spraktek\raylib_projects\2D-Platformer-Engine\build\CMakeFiles\0c4e856d863351aca0cef81695c783cf\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{89365981-AE5A-3022-94DC-47369DC1E590}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

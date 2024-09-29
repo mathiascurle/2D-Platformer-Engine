@@ -1,0 +1,2 @@
+G:\Spraktek\raylib_projects\2D-Platformer-Engine\build\Debug\raylib.dll
+G:\Spraktek\raylib_projects\2D-Platformer-Engine\build\mygame.dir\Debug\mygame.vcxproj.Up2Date

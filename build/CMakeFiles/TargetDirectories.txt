@@ -1,0 +1,3 @@
+G:/Spraktek/raylib_projects/2D-Platformer-Engine/build/CMakeFiles/mygame.dir
+G:/Spraktek/raylib_projects/2D-Platformer-Engine/build/CMakeFiles/ALL_BUILD.dir
+G:/Spraktek/raylib_projects/2D-Platformer-Engine/build/CMakeFiles/ZERO_CHECK.dir
