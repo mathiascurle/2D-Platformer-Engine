@@ -26,10 +26,14 @@ void Playing::update()
 
   // Camera movement
   Vector2 playerPos = m_player.getCenterV();
-  if (playerPos.x <= (m_camera.target.x - 100))
-  {
-    m_camera.target = Vector2Add(m_player.getCenterV(), {100, 0});
-  }
+  if (playerPos.x <= (m_camera.target.x - 80))
+    m_camera.target.x = playerPos.x + 80;
+  else if (playerPos.x >= (m_camera.target.x + 80))
+    m_camera.target.x = playerPos.x - 80;
+  if (playerPos.y <= (m_camera.target.y - 100))
+    m_camera.target.y = playerPos.y + 100;
+  else if (playerPos.y >= (m_camera.target.y + 100))
+    m_camera.target.y = playerPos.y - 100;
 }
 
 void Playing::draw()
