@@ -16,7 +16,7 @@ Player::Player()
   m_animationRec = {0, 0, 64, 40};
   m_aniTick = 0;
 
-  m_fGravity = 8;
+  m_fGravity = 10;
   m_fJumpGravity = 0;
   m_fFallGravity = 0;
 
@@ -29,11 +29,11 @@ Player::Player()
 void Player::update(float dt)
 {
   this->dt = dt;
+  // m_vVel.y = m_fGravity * dt;
   handleInputs();
   handleCollision();
   updatePos();
   updateAnimation();
-  // m_vCenter = Vector2AddValue(m_vPos, 16);
   m_vCenter.x = m_vPos.x + (64/2);
   m_vCenter.y = m_vPos.y + (40/2);
   m_hitbox = {m_vPos.x+24, m_vPos.y+8, 15, 27};
@@ -69,11 +69,11 @@ void Player::moveInputs()
   bool up = false, down = false, left = false, right = false;
   m_bJumping = false;
 
-  up   = IsKeyDown(KEY_W);
-  down = IsKeyDown(KEY_S);
-  if ( up && !down) m_vVel.y -= m_vVel.y <= -m_fMaxSpeed * dt ? 0.0f : m_fAccel * dt;
-  if (!up &&  down) m_vVel.y += m_vVel.y >= +m_fMaxSpeed * dt ? 0.0f : m_fAccel * dt;
-  if ( up ==  down) decelerate(&m_vVel.y);
+  // up   = IsKeyDown(KEY_W);
+  // down = IsKeyDown(KEY_S);
+  // if ( up && !down) m_vVel.y -= m_vVel.y <= -m_fMaxSpeed * dt ? 0.0f : m_fAccel * dt;
+  // if (!up &&  down) m_vVel.y += m_vVel.y >= +m_fMaxSpeed * dt ? 0.0f : m_fAccel * dt;
+  // if ( up ==  down) decelerate(&m_vVel.y);
   
   left  = IsKeyDown(KEY_A);
   right = IsKeyDown(KEY_D);
@@ -82,42 +82,17 @@ void Player::moveInputs()
   if ( left ==  right) decelerate(&m_vVel.x);
 
   // Jumping
-  if (IsKeyDown(KEY_SPACE))
+  if (IsKeyPressed(KEY_SPACE) && !m_bInAir)
   {
-    if (m_bFalling)
-    {
-      fallGravity();
-    }
-    else if (!m_bInAir)
-    {
-      // Start jump
-      m_bInAir = true;
-    }
-    if (m_bInAir && !m_bFalling)
-    {
-      if (m_bMaxJump)
-      {
-        m_bMaxJump = false;
-        m_bFalling = true;
-      }
-      else
-      {
-        // Continue jumping
-        m_vVel.y = -300 * dt;
-        m_fJumpGravity += (m_vVel.y > 10 * dt) ? -m_fJumpGravity : m_fGravity * dt;
-        m_vVel.y += m_fJumpGravity;
-        if (m_vVel.y >= 0)
-        {
-          m_bMaxJump = true;
-          m_bFalling = true;
-        }
-      }
-    }
-    // if (m_vVel.y >= 0) m_bJumping = false;
-    // else m_bJumping = true;
+    m_bInAir = true;
+    m_fJumpGravity = 70;
   }
-  else if (m_bFalling) 
-    fallGravity();
+  if (m_bInAir)
+    m_vVel.y -= m_fJumpGravity * dt;
+  if (m_fJumpGravity != 0)
+    m_fJumpGravity -= 10;
+  if (m_vVel.y <= 8)
+    m_vVel.y += m_fGravity * dt;
 
   // if ((up && left) || (up && right)) 
   //   Vector2Scale(m_vVel, 0.59f);
@@ -143,9 +118,9 @@ void Player::handleCollision()
   {
     Rectangle tileRect = {tile.x*g_fTileSize, tile.y*g_fTileSize, g_fTileSize, g_fTileSize};
     Rectangle nextHitbox = {m_hitbox.x+m_vVel.x, m_hitbox.y+m_vVel.y, m_hitbox.width, m_hitbox.height};
-    if (CheckCollisionRecs(nextHitbox, tileRect)) 
+    if (tile.type != 0) // Tile is none void
     {
-      if (tile.type != 0) // Tile is none void
+      if (CheckCollisionRecs(nextHitbox, tileRect)) 
       {
         m_fJumpGravity = 0;
         if (m_hitbox.y+m_hitbox.height < tileRect.y) // Player is over tile
